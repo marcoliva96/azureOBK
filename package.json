@@ -1,0 +1,21 @@
+{
+  "name": "bot-framework",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node azure-bot.js",
+    "dev": "node simple-bot.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@livekit/agents": "^1.0.3",
+    "botbuilder": "^4.23.3",
+    "node-fetch": "^3.3.2",
+    "restify": "^11.1.0"
+  }
+}
