@@ -5,8 +5,8 @@ import { TeamsBot } from './index.js';
 
 // Crear adapter con credenciales de Azure
 const adapter = new BotFrameworkAdapter({
-    appId: process.env.MicrosoftAppId,
-    appPassword: process.env.MicrosoftAppPassword
+    appId: process.env.MicrosoftAppId || 'c6cffe81-36fc-4a5a-9f66-a3c7fe3a229a',
+    appPassword: process.env.MicrosoftAppPassword || 'E0d8Q~HXISPuptPld3EtX_fF7w32lL2CRNwtfbX8'
 });
 
 // Manejo de errores
