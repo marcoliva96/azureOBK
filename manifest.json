@@ -1,0 +1,50 @@
+{
+  "$schema": "https://developer.microsoft.com/en-us/json-schemas/teams/v1.16/MicrosoftTeams.schema.json",
+  "manifestVersion": "1.16",
+  "version": "1.0.0",
+  "id": "c6cffe81-36fc-4a5a-9f66-a3c7fe3a229a",
+  "packageName": "com.obliku.teams.bot",
+  "developer": {
+    "name": "OBLIKU TECH",
+    "websiteUrl": "https://obliku.com",
+    "privacyUrl": "https://obliku.com/privacy",
+    "termsOfUseUrl": "https://obliku.com/terms"
+  },
+  "icons": {
+    "color": "color.png",
+    "outline": "outline.png"
+  },
+  "name": {
+    "short": "OBLIKU Bot",
+    "full": "OBLIKU Teams Bot con Azure Function"
+  },
+  "description": {
+    "short": "Bot que se conecta con Azure Function y muestra tarjetas adaptativas",
+    "full": "Bot de Teams que hace POST a Azure Function y muestra respuestas en tarjetas adaptativas. Integrado con Azure Function para obtener datos dinámicos."
+  },
+  "accentColor": "#0078D4",
+  "bots": [
+    {
+      "botId": "c6cffe81-36fc-4a5a-9f66-a3c7fe3a229a",
+      "scopes": [
+        "personal",
+        "team",
+        "groupchat"
+      ],
+      "supportsFiles": false,
+      "isNotificationOnly": false
+    }
+  ],
+  "permissions": [
+    "identity",
+    "messageTeamMembers"
+  ],
+  "validDomains": [
+    "*.azurewebsites.net",
+    "fninteraccioteamsobliku20250915174232.azurewebsites.net"
+  ],
+  "webApplicationInfo": {
+    "id": "c6cffe81-36fc-4a5a-9f66-a3c7fe3a229a",
+    "resource": "https://RscBasedStoreApp"
+  }
+}

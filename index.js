@@ -7,45 +7,85 @@ export class TeamsBot extends ActivityHandler {
         super();
         this.onMessage(async (context, next) => {
             try {
-                // 1️⃣ Hacer POST a la Azure Function
-                const response = await fetch(
-                    'https://fninteraccioteamsobliku20250915174232.azurewebsites.net/api/Function1',
-                    {
-                        method: 'POST',
-                        headers: { 
-                            'Content-Type': 'application/json',
-                            'selectedApp': 'A'
-                        }
-                    }
-                );
+                console.log('🤖 Bot recibió mensaje:', context.activity.text);
+                
+                // 1️⃣ Valores estáticos para pruebas
+                const data = {
+                    pregunta1: "¿Cuál es tu color favorito?",
+                    respuesta1: "Azul - Representa confianza y estabilidad",
+                    respuesta2: "Verde - Simboliza crecimiento y naturaleza"
+                };
 
-                const data = await response.json(); // { pregunta1, respuesta1, respuesta2 }
+                console.log('📊 Datos estáticos:', data);
 
-                // 2️⃣ Crear la Adaptive Card
+                // 2️⃣ Crear la Adaptive Card mejorada
                 const card = {
                     type: 'AdaptiveCard',
                     body: [
                         {
                             type: 'TextBlock',
+                            text: '🎨 **Pregunta de Prueba**',
+                            weight: 'Bolder',
+                            size: 'Large',
+                            color: 'Accent'
+                        },
+                        {
+                            type: 'TextBlock',
                             text: data.pregunta1,
                             weight: 'Bolder',
-                            size: 'Medium'
+                            size: 'Medium',
+                            wrap: true,
+                            spacing: 'Medium'
                         },
                         {
-                            type: 'TextBlock',
-                            text: data.respuesta1,
-                            wrap: true
+                            type: 'Container',
+                            style: 'emphasis',
+                            items: [
+                                {
+                                    type: 'TextBlock',
+                                    text: '**Opción 1:**',
+                                    weight: 'Bolder',
+                                    size: 'Small'
+                                },
+                                {
+                                    type: 'TextBlock',
+                                    text: data.respuesta1,
+                                    wrap: true,
+                                    spacing: 'Small'
+                                }
+                            ],
+                            spacing: 'Medium'
                         },
                         {
-                            type: 'TextBlock',
-                            text: data.respuesta2,
-                            wrap: true
+                            type: 'Container',
+                            style: 'emphasis',
+                            items: [
+                                {
+                                    type: 'TextBlock',
+                                    text: '**Opción 2:**',
+                                    weight: 'Bolder',
+                                    size: 'Small'
+                                },
+                                {
+                                    type: 'TextBlock',
+                                    text: data.respuesta2,
+                                    wrap: true,
+                                    spacing: 'Small'
+                                }
+                            ],
+                            spacing: 'Medium'
                         }
                     ],
                     actions: [
                         {
                             type: 'Action.Submit',
-                            title: 'Aceptar'
+                            title: '✅ Aceptar',
+                            data: { action: 'accept' }
+                        },
+                        {
+                            type: 'Action.Submit',
+                            title: '🔄 Otra Pregunta',
+                            data: { action: 'new_question' }
                         }
                     ],
                     $schema: 'http://adaptivecards.io/schemas/adaptive-card.json',
@@ -53,10 +93,16 @@ export class TeamsBot extends ActivityHandler {
                 };
 
                 // 3️⃣ Enviar la tarjeta a Teams
-                await context.sendActivity({ attachments: [CardFactory.adaptiveCard(card)] });
+                await context.sendActivity({ 
+                    attachments: [CardFactory.adaptiveCard(card)],
+                    text: 'Aquí tienes tu tarjeta adaptativa de prueba:'
+                });
+                
+                console.log('✅ Tarjeta enviada correctamente');
+                
             } catch (error) {
-                console.error(error);
-                await context.sendActivity('Ocurrió un error al obtener la tarjeta.');
+                console.error('❌ Error:', error);
+                await context.sendActivity('Ocurrió un error al crear la tarjeta.');
             }
 
             await next();

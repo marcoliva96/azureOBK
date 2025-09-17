@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Crear Iconos para Teams Bot</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .icon-container { display: inline-block; margin: 20px; text-align: center; }
+        canvas { border: 1px solid #ccc; margin: 10px; }
+        .instructions { background: #f0f0f0; padding: 15px; border-radius: 5px; margin: 20px 0; }
+    </style>
+</head>
+<body>
+    <h1>🎨 Generador de Iconos para Teams Bot</h1>
+    
+    <div class="instructions">
+        <h3>📋 Instrucciones:</h3>
+        <ol>
+            <li>Haz clic derecho en cada icono y "Guardar imagen como..."</li>
+            <li>Guarda el <strong>icono de color</strong> como <code>color.png</code> (192x192px)</li>
+            <li>Guarda el <strong>icono de esquema</strong> como <code>outline.png</code> (32x32px)</li>
+            <li>Coloca ambos archivos en la carpeta del proyecto</li>
+        </ol>
+    </div>
+
+    <div class="icon-container">
+        <h3>🎨 Icono de Color (192x192px)</h3>
+        <canvas id="colorIcon" width="192" height="192"></canvas>
+        <p>Fondo azul con "O" blanca</p>
+    </div>
+
+    <div class="icon-container">
+        <h3>⚪ Icono de Esquema (32x32px)</h3>
+        <canvas id="outlineIcon" width="32" height="32"></canvas>
+        <p>Esquema blanco sobre transparente</p>
+    </div>
+
+    <script>
+        // Icono de color (192x192)
+        const colorCanvas = document.getElementById('colorIcon');
+        const colorCtx = colorCanvas.getContext('2d');
+        
+        // Fondo azul
+        colorCtx.fillStyle = '#0078D4';
+        colorCtx.fillRect(0, 0, 192, 192);
+        
+        // Círculo blanco
+        colorCtx.fillStyle = 'white';
+        colorCtx.beginPath();
+        colorCtx.arc(96, 96, 60, 0, 2 * Math.PI);
+        colorCtx.fill();
+        
+        // Letra "O" azul
+        colorCtx.fillStyle = '#0078D4';
+        colorCtx.font = 'bold 80px Arial';
+        colorCtx.textAlign = 'center';
+        colorCtx.textBaseline = 'middle';
+        colorCtx.fillText('O', 96, 96);
+
+        // Icono de esquema (32x32)
+        const outlineCanvas = document.getElementById('outlineIcon');
+        const outlineCtx = outlineCanvas.getContext('2d');
+        
+        // Fondo transparente (ya es transparente por defecto)
+        
+        // Círculo blanco
+        outlineCtx.fillStyle = 'white';
+        outlineCtx.beginPath();
+        outlineCtx.arc(16, 16, 12, 0, 2 * Math.PI);
+        outlineCtx.fill();
+        
+        // Letra "O" blanca
+        outlineCtx.fillStyle = 'white';
+        outlineCtx.font = 'bold 16px Arial';
+        outlineCtx.textAlign = 'center';
+        outlineCtx.textBaseline = 'middle';
+        outlineCtx.fillText('O', 16, 16);
+    </script>
+</body>
+</html>

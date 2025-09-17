@@ -2,12 +2,11 @@
 import restify from 'restify';
 import { BotFrameworkAdapter } from 'botbuilder';
 import { TeamsBot } from './index.js';
-import { config } from './config.js';
 
-// Crear adapter con credenciales de Azure
+// Crear adapter con credenciales de Azure (para desarrollo local)
 const adapter = new BotFrameworkAdapter({
-    appId: config.MicrosoftAppId,
-    appPassword: config.MicrosoftAppPassword
+    appId: process.env.MicrosoftAppId || 'c6cffe81-36fc-4a5a-9f66-a3c7fe3a229a',
+    appPassword: process.env.MicrosoftAppPassword || 'E0d8Q~HXISPuptPld3EtX_fF7w32lL2CRNwtfbX8'
 });
 
 // Manejo de errores
@@ -20,12 +19,12 @@ adapter.onTurnError = async (context, error) => {
 const server = restify.createServer();
 server.use(restify.plugins.bodyParser());
 
-const PORT = process.env.PORT || 3978;
+const PORT = process.env.PORT || 3979;
 
 server.listen(PORT, () => {
     console.log(`\n🤖 Bot ejecutándose en http://localhost:${PORT}`);
     console.log(`📡 Endpoint: http://localhost:${PORT}/api/messages`);
-    console.log(`🔑 App ID: ${config.MicrosoftAppId}`);
+    console.log(`🔑 App ID: ${process.env.MicrosoftAppId || 'c6cffe81-36fc-4a5a-9f66-a3c7fe3a229a'}`);
 });
 
 // Endpoint para mensajes de Teams
