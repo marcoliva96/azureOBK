@@ -52,4 +52,4 @@ jobs:
           app-name: 'appInteraccioTeamsObliku'
           slot-name: 'Production'
           package: .
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_8C8D9EB00D7C465D869A3B5097E3B590 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_E8B0D13AA9324CD194782AEBEE30471A }}
